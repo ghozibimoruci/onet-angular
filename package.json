@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "set NODE_OPTIONS=--openssl-legacy-provider && ng build --prod --base-href https://ghozibimoruci.github.io/onet-angular/ && npx angular-cli-ghpages --dir=dist/onet-angular",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

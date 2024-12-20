@@ -59,7 +59,6 @@ export class AppComponent {
     indexIcon: number;
     iconName: string;
   }[] = [];
-  iconCount = 0;
 
   formattedTime: string = "00:00";
   initialRemainingTime = 300;
@@ -90,7 +89,6 @@ export class AppComponent {
       }
       this.gamesArray.push(gamesArrayPerItem);
     }
-    console.log(this.gamesArray);
   }
 
   getRandomNumber(min: number, max: number): number {
@@ -133,8 +131,6 @@ export class AppComponent {
         this.iconPairSelected.forEach((item) => {
           this.gamesArray[item.indexArray][item.indexIcon].selected = false;
         });
-      } else {
-        this.iconCount += 2;
       }
       this.iconPairSelected = [];
     }
@@ -146,9 +142,7 @@ export class AppComponent {
     this.gamesArray[indexArray][indexIcon].selected = true;
     if (this.iconPairSelected.length == 2) {
       if (
-        this.iconPairSelected[0].iconName ==
-          this.iconPairSelected[1].iconName &&
-        this.iconCount == Math.pow(this.gameSize, 2) - 2
+        this.gamesArray.every((array) => array.every((icon) => icon.selected))
       ) {
         setTimeout(() => {
           this.winTheGame();
@@ -160,6 +154,7 @@ export class AppComponent {
   resetGame() {
     this.gamesArray = [];
     this.gameSize = null;
+    this.iconPairSelected = [];
   }
 
   winTheGame() {
@@ -183,7 +178,9 @@ export class AppComponent {
         this.updateDisplay();
       } else {
         this.stopTimer();
-        if (this.iconCount != Math.pow(this.gameSize, 2)) {
+        if (
+          this.gamesArray.some((array) => array.some((icon) => !icon.selected))
+        ) {
           this.loseTheGame();
         }
       }
