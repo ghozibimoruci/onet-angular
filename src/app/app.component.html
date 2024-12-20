@@ -1,0 +1,49 @@
+<div class="py-4 py-md-5">
+  <div class="container" *ngIf="!gameSize">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-6">
+        <div class="row justify-content-between">
+          <div class="col-auto">
+            <button class="btn btn-light" (click)="selectLevel(8)">
+              Beginner
+            </button>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-light" (click)="selectLevel(12)">
+              Intermediate
+            </button>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-light" (click)="selectLevel(16)">
+              Hard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="gameSize">
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <div class="timer-container">
+          <span>{{ formattedTime }}</span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row justify-content-center"
+      *ngFor="let game of gamesArray; let i = index"
+    >
+      <div class="col-auto p-2" *ngFor="let icon of game; let j = index">
+        <button
+          mat-icon-button
+          class="d-flex p-2 border cl-games-primary rounded-circle"
+          [ngClass]="{ 'bg-games-primary': !icon.selected }"
+          (click)="selectIcon(i, j)"
+        >
+          <mat-icon>{{ icon.iconName }}</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

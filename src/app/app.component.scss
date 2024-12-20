@@ -1,0 +1,23 @@
+.bg-games-primary {
+  background-color: #ed0677;
+}
+.cl-games-primary {
+  color: #ed0677;
+}
+.timer-container {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+  color: #333;
+}
+
+.timer-container span {
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  display: inline-block;
+  min-width: 80px;
+}
